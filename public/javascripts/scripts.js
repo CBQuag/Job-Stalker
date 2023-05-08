@@ -82,7 +82,7 @@ let messageItem=JSON.parse(messageJSON);
 messageItem?null:messageItem=[];
 
 let messageCount=document.querySelector('.message-count');
-messageCount.innerHTML=messageItem.length-1;
+messageCount.innerHTML=messageItem.length;
 
 let daysBetween=(start, end)=>{
     let difference=(Date.now())-Date.parse(start);
@@ -109,6 +109,8 @@ let removeUnderScore=(str)=>{
 //builds out the list
 let alerts=0;
 messageItem.forEach(element => {
+    let shortenedMessage=element.message.substring(0, 40)
+    shortenedMessage==element.message?null:shortenedMessage+='...'
     let index=messageItem.indexOf(element);
     if(!element.name)
         return;
@@ -119,7 +121,7 @@ messageItem.forEach(element => {
             <p>${element.name}</p>
         </td>
         <td>${element.method}</td>
-        <td>${element.message}</td>
+        <td><span title=${element.message}>${shortenedMessage}</span></td>
         <td><span class="Entry Date">${element.date}</span></td>
     </tr>
     `;
@@ -134,7 +136,7 @@ messageItem.forEach(element => {
     `
     <li class="completed">
         <p>Contacted ${element.name} ${daysBetween(element.date)} days ago</p>
-        <button class='bx delete-but' value=${addUnderScore(element.name)}>Delete</button>
+        <button class='bx delete-but' value=${addUnderScore(element.name)}><i class="fa fa-trash" aria-hidden="true"></i></button>
     </li>`;
 });
 
