@@ -5,7 +5,7 @@
 
 body{
     background: url(images//17056599.jpg);
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat; */
     background-size: cover;
     font-family: sans-serif;
 }
@@ -53,4 +53,23 @@ form{
     cursor: pointer;
 }
 
+#header {
+    display: grid;
+}
 
+
+
+@media screen and (max-width: 768px) {
+	#header {
+		width: 50px;
+	}
+
+	#header {
+		width: calc(100% - 60px);
+		left: 50px;
+	}
+
+	#header img {
+		display: none;
+	}
+}
